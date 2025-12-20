@@ -4,12 +4,29 @@ import { ArrowRight, Star } from 'lucide-react';
 
 const Result = () => {
   const location = useLocation();
-  const result = location.state?.result;
+  const { result, scores } = location.state || {};
 
   // If no result is passed, redirect to quiz
   if (!result) {
     return <Navigate to="/quiz" replace />;
   }
+
+  // Calculate percentages for the spectrum breakdown
+  const calculatePercent = (sideA, sideB) => {
+    if (!scores) return 50;
+    const valA = scores[sideA] || 0;
+    const valB = scores[sideB] || 0;
+    const total = valA + valB;
+    if (total === 0) return 50;
+    return Math.round((valA / total) * 100);
+  };
+
+  const spectrum = [
+    { label: 'Self-Expansion', value: calculatePercent('soulSeeker', 'pleasureSeeker') },
+    { label: 'Place Resonance', value: calculatePercent('connector', 'wanderer') },
+    { label: 'Openness', value: calculatePercent('explorer', 'comfortKeeper') },
+    { label: 'Structuration', value: calculatePercent('architect', 'flowWalker') }
+  ];
 
   return (
     <div className="result-page">
@@ -35,22 +52,14 @@ const Result = () => {
             <div className="spectrum-breakdown">
               <h3>Your Spectrum Breakdown</h3>
               <div className="spectrum-grid">
-                <div className="spectrum-item">
-                  <span className="dim-label">Self-Expansion</span>
-                  <div className="dim-bar"><div className="dim-fill" style={{ width: '75%' }}></div></div>
-                </div>
-                <div className="spectrum-item">
-                  <span className="dim-label">Place Resonance</span>
-                  <div className="dim-bar"><div className="dim-fill" style={{ width: '60%' }}></div></div>
-                </div>
-                <div className="spectrum-item">
-                  <span className="dim-label">Openness</span>
-                  <div className="dim-bar"><div className="dim-fill" style={{ width: '85%' }}></div></div>
-                </div>
-                <div className="spectrum-item">
-                  <span className="dim-label">Structuration</span>
-                  <div className="dim-bar"><div className="dim-fill" style={{ width: '40%' }}></div></div>
-                </div>
+                {spectrum.map((item, idx) => (
+                  <div className="spectrum-item" key={idx}>
+                    <span className="dim-label">{item.label}</span>
+                    <div className="dim-bar">
+                      <div className="dim-fill" style={{ width: `${item.value}%` }}></div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -86,16 +95,21 @@ const Result = () => {
         }
 
         .result-title {
-          font-size: 4rem;
+          font-size: 3.5rem;
           color: var(--color-accent-terracotta);
-          margin-bottom: 8px;
+          margin-bottom: 12px;
+          line-height: 1.1;
         }
 
         .result-subtitle {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--color-text-primary);
-            margin-bottom: 40px;
+            margin-bottom: 48px;
             font-weight: 400;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.4;
         }
 
         .result-card {

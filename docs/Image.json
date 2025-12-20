@@ -1,0 +1,181 @@
+{
+    "version": "1.0",
+    "pack_name": "TravelSoulSpectrum_ImagePrompts_GalienLaloue_Bright",
+    "global_style_prompt": "Visual style inspired by Eugene Galien-Laloue: soft, painterly realism; impressionistic atmosphere; delicate brushstroke texture; balanced composition; gentle depth and perspective; subtle grain and canvas texture.\n\nLighting: natural light, luminous and airy, with enhanced brightness and clarity.\nColor palette: brighter and more vivid than classic Galien-Laloue, with fresh blues, soft greens, warm sunlight tones, and gentle contrast — optimistic, calm, and inviting, not muted or melancholic.\n\nMood: quiet elegance, contemplative, human-scaled, timeless but approachable.\n\nPeople: realistic proportions, non-stylized, no exaggerated expressions. Faces should be subtle or partially obscured; avoid strong facial features or identity cues.\n\nCamera: eye-level or slightly distant perspective, cinematic but restrained.\nNo modern filters, no illustration style, no cartoon, no digital surrealism.",
+    "shared_negative_prompt": "cartoon, anime, 3D render, CGI, hyper-realistic portrait, strong facial close-up, exaggerated facial features, surreal elements, heavy Instagram filters, neon cyberpunk, text overlays, watermark, logo, low-res, blurry, distorted anatomy",
+    "image_requirements": {
+        "aspect_ratio": "4:3",
+        "resolution_hint": "1024x768 or higher",
+        "people_identity_safety": "Avoid identifiable faces; use back view, profile, or subtle facial detail.",
+        "consistency_notes": [
+            "Generate all images in the same model/session if possible to reduce style drift.",
+            "Keep brightness and airy natural lighting consistent across the set.",
+            "Avoid overly dramatic scenes; keep the emotion readable at a glance."
+        ]
+    },
+    "assets": [
+        {
+            "asset_id": "Q5_A_SOUL_IDEAL_MOMENT",
+            "question_id": "Q5",
+            "option_id": "A",
+            "dimension_signal": [
+                "SelfExpansion:SoulSeeker"
+            ],
+            "weight": 1.5,
+            "placeholder_key": "img_q5_a",
+            "prompt": "[GLOBAL_STYLE_PROMPT]\n\nA single person sitting quietly in nature, alone on a hill or by a calm lake, early morning atmosphere. The person is either meditating or writing in a notebook, body relaxed, inward-focused. No direct eye contact with the viewer.\n\nEnvironment feels still and expansive, with soft sunlight and open space. Emphasis on solitude, introspection, and inner calm."
+        },
+        {
+            "asset_id": "Q5_B_PLEASURE_IDEAL_MOMENT",
+            "question_id": "Q5",
+            "option_id": "B",
+            "dimension_signal": [
+                "SelfExpansion:PleasureSeeker"
+            ],
+            "weight": 1.5,
+            "placeholder_key": "img_q5_b",
+            "prompt": "[GLOBAL_STYLE_PROMPT]\n\nA small group of friends (3–4 people) by the sea or on a rooftop at sunset, laughing and raising glasses together. Gentle motion in the scene, light conversation and shared joy.\n\nWarm sunlight, bright sky, lively yet balanced composition. Emphasis on togetherness, celebration, and shared happiness."
+        },
+        {
+            "asset_id": "Q6_A_CONNECTOR_INTERACTION",
+            "question_id": "Q6",
+            "option_id": "A",
+            "dimension_signal": [
+                "PlaceResonance:Connector"
+            ],
+            "weight": 1.5,
+            "placeholder_key": "img_q6_a",
+            "prompt": "[GLOBAL_STYLE_PROMPT]\n\nTwo or three people interacting naturally in a local street or small market. They are talking, smiling, or sharing a moment with a local vendor or resident.\n\nThe scene feels intimate and human-scaled. Emphasis on connection, warmth, and presence between people."
+        },
+        {
+            "asset_id": "Q6_B_WANDERER_OBSERVER",
+            "question_id": "Q6",
+            "option_id": "B",
+            "dimension_signal": [
+                "PlaceResonance:Wanderer"
+            ],
+            "weight": 1.5,
+            "placeholder_key": "img_q6_b",
+            "prompt": "[GLOBAL_STYLE_PROMPT]\n\nA single traveler standing alone at a high viewpoint, overlooking a city skyline or wide urban landscape.\n\nThe figure is seen from behind or in profile, observing quietly. Emphasis on distance, perspective, and silent observation."
+        },
+        {
+            "asset_id": "Q7_A_EXPLORER_UNCONVENTIONAL",
+            "question_id": "Q7",
+            "option_id": "A",
+            "dimension_signal": [
+                "Openness:Explorer"
+            ],
+            "weight": 1.5,
+            "placeholder_key": "img_q7_a",
+            "prompt": "[GLOBAL_STYLE_PROMPT]\n\nAn unconventional or remote place: a quiet art installation in nature, or a lesser-known natural landscape. Few or no people in the frame; if present, they are small and not central.\n\nThe scene feels curious, open-ended, and slightly mysterious. Emphasis on exploration and the unknown."
+        },
+        {
+            "asset_id": "Q7_B_COMFORT_ICONIC",
+            "question_id": "Q7",
+            "option_id": "B",
+            "dimension_signal": [
+                "Openness:ComfortKeeper"
+            ],
+            "weight": 1.5,
+            "placeholder_key": "img_q7_b",
+            "prompt": "[GLOBAL_STYLE_PROMPT]\n\nA well-known, iconic travel destination with visible visitors. Clear structure and recognizable landmarks.\n\nThe scene feels familiar, safe, and lively. Emphasis on order, popularity, and shared recognition."
+        },
+        {
+            "asset_id": "Q8_A_ARCHITECT_PLANNING",
+            "question_id": "Q8",
+            "option_id": "A",
+            "dimension_signal": [
+                "Structuration:Architect"
+            ],
+            "weight": 1.5,
+            "placeholder_key": "img_q8_a",
+            "prompt": "[GLOBAL_STYLE_PROMPT]\n\nA close or mid-range view of a neatly organized travel planning scene: a notebook, printed itinerary, calendar, or handwritten schedule on a table.\n\nObjects are orderly and intentional. Emphasis on structure, preparation, and control. No people required."
+        },
+        {
+            "asset_id": "Q8_B_FLOW_OPEN_SPACE",
+            "question_id": "Q8",
+            "option_id": "B",
+            "dimension_signal": [
+                "Structuration:FlowWalker"
+            ],
+            "weight": 1.5,
+            "placeholder_key": "img_q8_b",
+            "prompt": "[GLOBAL_STYLE_PROMPT]\n\nAn open, airy scene with strong negative space: an empty road, an open map, or a quiet natural path.\n\nA sense of freedom and openness, minimal objects. Optional handwritten text such as “go with the flow”, but subtle and not dominant."
+        },
+        {
+            "asset_id": "Q11_A_BOOKSTORE_QUIET",
+            "question_id": "Q11",
+            "option_id": "A",
+            "dimension_signal": [
+                "Structuration:Architect",
+                "SelfExpansion:SoulSeeker"
+            ],
+            "weight": 1.0,
+            "placeholder_key": "img_q11_a",
+            "prompt": "[GLOBAL_STYLE_PROMPT]\n\nA single person sitting quietly in a bookstore or library, reading a book at a wooden table.\n\nIndoor warm light, calm and composed atmosphere. Emphasis on focus, stillness, and inner world."
+        },
+        {
+            "asset_id": "Q11_B_NIGHT_MARKET_SOCIAL",
+            "question_id": "Q11",
+            "option_id": "B",
+            "dimension_signal": [
+                "PlaceResonance:Connector",
+                "SelfExpansion:PleasureSeeker"
+            ],
+            "weight": 1.0,
+            "placeholder_key": "img_q11_b",
+            "prompt": "[GLOBAL_STYLE_PROMPT]\n\nA small group of people at a night market, sharing food, smiling, possibly taking a casual photo together.\n\nSoft evening light, lively but not chaotic. Emphasis on social warmth, shared experience, and human energy."
+        },
+        {
+            "asset_id": "Q11_C_NATURE_SOLO",
+            "question_id": "Q11",
+            "option_id": "C",
+            "dimension_signal": [
+                "Openness:Explorer",
+                "PlaceResonance:Wanderer"
+            ],
+            "weight": 1.0,
+            "placeholder_key": "img_q11_c",
+            "prompt": "[GLOBAL_STYLE_PROMPT]\n\nA single person walking alone through nature: a forest path, hillside, or open field.\n\nThe figure is moving away from the viewer. Bright natural light, spacious composition. Emphasis on freedom, independence, and quiet exploration."
+        }
+    ],
+    "render_mapping": {
+        "Q5": {
+            "type": "image_choice",
+            "prompt_assets": [
+                "img_q5_a",
+                "img_q5_b"
+            ]
+        },
+        "Q6": {
+            "type": "image_choice",
+            "prompt_assets": [
+                "img_q6_a",
+                "img_q6_b"
+            ]
+        },
+        "Q7": {
+            "type": "image_choice",
+            "prompt_assets": [
+                "img_q7_a",
+                "img_q7_b"
+            ]
+        },
+        "Q8": {
+            "type": "image_choice",
+            "prompt_assets": [
+                "img_q8_a",
+                "img_q8_b"
+            ]
+        },
+        "Q11": {
+            "type": "image_choice",
+            "prompt_assets": [
+                "img_q11_a",
+                "img_q11_b",
+                "img_q11_c"
+            ]
+        }
+    },
+    "implementation_note": "At generation time, replace [GLOBAL_STYLE_PROMPT] in each asset.prompt with global_style_prompt (string concatenation)."
+}
