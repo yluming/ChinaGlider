@@ -70,7 +70,7 @@ const Result = () => {
 
             <div className="action-area">
               <p className="next-step-hint">We've curated a list of spots just for you.</p>
-              <Link to="/poi-selection" className="btn-primary">
+              <Link to="/poi-selection" state={{ result, scores }} className="btn-primary">
                 Explore Your Experience Pool <ArrowRight size={20} style={{ marginLeft: '8px' }} />
               </Link>
             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Map, Heart, Compass } from 'lucide-react';
-import heroBg from '../assets/hero-new.png';
+import heroBg from '../assets/上海秋日街景_1822x1024_完整版.jpg';
 
 const LandingPage = () => {
   return (
