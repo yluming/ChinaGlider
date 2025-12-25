@@ -166,3 +166,4 @@ This order reflects observed decision impact from the questionnaire design.
 
 **Status**: MVP Ready  
 **Intended Use**: LLM system prompt, recommendation logic, itinerary ranking
+ 

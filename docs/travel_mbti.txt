@@ -101,3 +101,188 @@ End of Questionnaire
 
 Thank you for completing the Travel Soul Spectrum.
 Your answers will be combined to reveal your unique travel archetype and personalized travel style.
+
+
+
+## Appendix · Scoring & Result Logic (for the Model)
+
+### 1) Goal
+
+Map the user’s answers across **4 psychological dimensions**, then output **1 of 16 Travel Soul Spectrum archetypes**.
+
+---
+
+### 2) Dimensions & Sides
+
+Each dimension has two opposing sides:
+
+1. **Self-Expansion Motive**
+
+   * **Soul Seeker** (high self-expansion)
+   * **Pleasure Seeker** (low self-expansion)
+
+2. **Place Resonance**
+
+   * **Connector** (high resonance)
+   * **Wanderer** (low resonance)
+
+3. **Openness to Experience**
+
+   * **Explorer** (high openness)
+   * **Comfort Keeper** (low openness)
+
+4. **Structuration / Planning**
+
+   * **Architect** (high structure/planning)
+   * **Flow Walker** (low structure/go-with-the-flow)
+
+---
+
+### 3) Scoring Rules (Simple, Deterministic)
+
+**General rule:**
+Every selected option adds points to one (or multiple) sides. No negative points.
+
+**Weights by question type:**
+
+* **Phase 1 text questions (Q1–Q4):** weight **1.0**
+* **Phase 2 image questions (Q5–Q8):** weight **1.5**
+* **Phase 3 integrative questions:**
+
+  * **Q9:** weight **2.0**
+  * **Q10:** weight **1.0** (multi-select, max 2 options)
+  * **Q11:** weight **1.0**
+  * **Q12:** weight **0.5**
+
+Implementation: multiply each awarded point by the weight.
+
+---
+
+### 4) Answer-to-Score Mapping (by question)
+
+#### Q1 (Text) — Self-Expansion
+
+* A → Soul Seeker **+1.0**
+* B → Pleasure Seeker **+1.0**
+
+#### Q2 (Text) — Place Resonance
+
+* A → Connector **+1.0**
+* B → Wanderer **+1.0**
+
+#### Q3 (Text) — Openness
+
+* A → Explorer **+1.0**
+* B → Comfort Keeper **+1.0**
+
+#### Q4 (Text) — Structuration / Planning
+
+* A → Architect **+1.0**
+* B → Flow Walker **+1.0**
+
+---
+
+#### Q5 (Image) — Self-Expansion
+
+* A → Soul Seeker **+1.5**
+* B → Pleasure Seeker **+1.5**
+
+#### Q6 (Image) — Place Resonance
+
+* A → Connector **+1.5**
+* B → Wanderer **+1.5**
+
+#### Q7 (Image) — Openness
+
+* A → Explorer **+1.5**
+* B → Comfort Keeper **+1.5**
+
+#### Q8 (Image) — Structuration / Planning
+
+* A → Architect **+1.5**
+* B → Flow Walker **+1.5**
+
+---
+
+#### Q9 (Scenario, single choice) — Integrative
+
+* A → Architect **+2.0**
+* B → Flow Walker **+1.0** AND Explorer **+1.0**
+* C → Soul Seeker **+2.0**
+* D → Pleasure Seeker **+2.0**
+
+---
+
+#### Q10 (Memory, multi-select, up to 2)
+
+For each selected option (max 2):
+
+* A → Soul Seeker **+1.0**
+* B → Pleasure Seeker **+1.0**
+* C → Connector **+1.0**
+* D → Architect **+1.0**
+
+> Constraint: if user selects 2 options, each gets full +1.0 (no splitting). If the product requires splitting later, do it in code, not in the prompt.
+
+---
+
+#### Q11 (Image, single choice) — Cross-signal
+
+* A → Architect **+1.0** AND Soul Seeker **+1.0**
+* B → Connector **+1.0** AND Pleasure Seeker **+1.0**
+* C → Explorer **+1.0** AND Wanderer **+1.0**
+
+---
+
+#### Q12 (Sound, single choice) — Emotional calibration (light weight)
+
+* A → Connector **+0.5** AND Pleasure Seeker **+0.5**
+* B → Wanderer **+0.5** AND Soul Seeker **+0.5**
+
+---
+
+### 5) Final Type Decision (Deterministic)
+
+1. Sum scores for each side within each dimension.
+
+   * Dimension 1: Soul Seeker vs Pleasure Seeker
+   * Dimension 2: Connector vs Wanderer
+   * Dimension 3: Explorer vs Comfort Keeper
+   * Dimension 4: Architect vs Flow Walker
+
+2. For each dimension, choose the side with the higher score.
+
+   * If tied: break ties using the **higher-weight questions** in this order:
+     **Q9 > Q5–Q8 > Q1–Q4 > Q10/Q11/Q12**
+   * If still tied: default to the **Phase 2 (image) choice** for that dimension.
+
+3. Combine the 4 chosen sides to form one of 16 archetypes.
+
+---
+
+### 6) 16 Archetype Mapping (Combination → Type)
+
+Use this mapping table:
+
+**High Self-Expansion (Soul Seeker)**
+
+* Soul Seeker + Connector + Explorer + Architect → **Soul Pilgrim**
+* Soul Seeker + Connector + Explorer + Flow Walker → **Wandering Poet**
+* Soul Seeker + Wanderer + Comfort Keeper + Architect → **Inner Guardian**
+* Soul Seeker + Wanderer + Explorer + Flow Walker → **Dream Walker**
+* Soul Seeker + Connector + Comfort Keeper + Architect → **Silent Philosopher**
+* Soul Seeker + Connector + Comfort Keeper + Flow Walker → **Mindful Artisan**
+* Soul Seeker + Wanderer + Explorer + Architect → **Insight Scholar**
+* Soul Seeker + Wanderer + Comfort Keeper + Flow Walker → **Spirit Nomad**
+
+**Low Self-Expansion (Pleasure Seeker)**
+
+* Pleasure Seeker + Connector + Explorer + Flow Walker → **Festival Mover**
+* Pleasure Seeker + Connector + Explorer + Architect → **Urban Adventurer**
+* Pleasure Seeker + Connector + Comfort Keeper + Architect → **Heritage Keeper**
+* Pleasure Seeker + Connector + Comfort Keeper + Flow Walker → **Serene Bonvivant**
+* Pleasure Seeker + Wanderer + Explorer + Architect → **Solo Observer**
+* Pleasure Seeker + Wanderer + Explorer + Flow Walker → **Gentle Drifter**
+* Pleasure Seeker + Wanderer + Comfort Keeper + Flow Walker → **Calm Drifter**
+* Pleasure Seeker + Wanderer + Comfort Keeper + Architect → **Classic Planner**
+
